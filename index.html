@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Your Website</title>
+	</head>
+
+	<body>
+
+		<div id="root">
+			<nav>
+				<a href="#">
+					<div :class="{saveMenu : customize, menu : !customize}" @click="toggleMenu">
+						<p>
+							{{ menuText }}
+						</p>
+					</div>
+				</a>
+			</nav>
+
+			<div class="header">
+				<img class="dogImage" src="images/dog.jpeg">
+
+				<h1>
+					<div class="hide" v-bind:class="{ customizeMode: customize}">
+						<input type="text" v-model="title">
+					</div>
+					{{ title }}
+				</h1>
+
+				<div class="subtitle">
+					<div class="hide" v-bind:class="{ customizeMode: customize}">
+						<input type="text" place-holder="new subtitle" v-model="subtitle">
+					</div>
+					{{ subtitle }}
+				</div>
+			</div>
+
+			<div class="about">
+				<h1>
+					<div class="hide" v-bind:class="{ customizeMode: customize}">
+						<input type="text" v-model="aboutTitle">
+					</div>
+					{{ aboutTitle }}
+					<hr>
+				</h1>
+				<div class="aboutText">
+					<div class="hide" v-bind:class="{ customizeMode: customize}">
+						<input type="text" v-model="aboutText">
+					</div>
+					{{ aboutText }}
+				</div>
+			</div>
+
+			<div class="contact">
+				<h1>
+					<div class="hide" v-bind:class="{ customizeMode: customize}">
+						<input type="text" v-model="contactTitle">
+					</div>
+					{{ contactTitle }}
+					<hr>
+				</h1>
+
+				<div class="contactLinks">
+					<div class="hide" v-bind:class="{ customizeMode: customize}">
+						<form @submit.prevent="addItem">
+							<input type="text" placeholder="What is the link for?"v-model="linkTitle">
+							<input type="text" placeholder="Insert entire link e.g. https://www.google.com" v-model="href">
+							<button type="submit">Add Link</button>
+						</form>
+					</div>
+					<ul>
+						<li v-for="link in links">
+							<a v-bind:href="link.link">{{ link.title }}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="app.js"></script>
+		<script src="script.js"></script>
+	</body>
+
+</html>
